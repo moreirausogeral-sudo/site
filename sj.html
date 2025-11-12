@@ -1,0 +1,382 @@
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Biome hell</title>
+
+    <style>
+      .trilha-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        background-color: #1e1e1e;
+        border: 1px solid #333;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 20px;
+        box-shadow: 0 0 8px #0006;
+      }
+
+      .faixa {
+        background-color: #222;
+        padding: 10px;
+        border-radius: 8px;
+        transition: background 0.3s, transform 0.2s;
+      }
+
+      .faixa:hover {
+        background-color: #2e2e2e;
+        transform: scale(1.02);
+      }
+
+      .faixa p {
+        margin: 0 0 5px;
+        color: #ffa726;
+        font-weight: bold;
+      }
+
+      audio {
+        width: 100%;
+        outline: none;
+        filter: drop-shadow(0 0 3px #000);
+      }
+
+      html {
+        scroll-behavior: smooth;
+
+      }
+
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #121212;
+        color: #f5f5f5;
+      }
+
+      nav {
+        background-color: #1e1e1e;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 15px;
+        padding: 12px;
+        margin: 0;
+        justify-content: center;
+      }
+
+      nav ul li a {
+        color: #ffa726;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.2s;
+      }
+
+      nav ul li a:hover {
+        color: white;
+      }
+
+      header {
+        text-align: center;
+        padding: 30px 15px;
+        background-color: #1c1c1c;
+        border-bottom: 2px solid #ffa726;
+      }
+
+      header h1 {
+        font-size: 2em;
+        color: #ffa726;
+      }
+
+      header p {
+        color: #ccc;
+      }
+
+      h2 {
+        color: #ffa726;
+        border-left: 4px solid #ffa726;
+        padding-left: 8px;
+      }
+
+      p {
+        line-height: 1.6;
+      }
+
+      .cenarios {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .cenario {
+        background-color: #1e1e1e;
+        border: 1px solid #333;
+        border-radius: 8px;
+        flex: 1 1 calc(33.3% - 10px);
+        text-align: center;
+        padding: 15px;
+      }
+
+      .cenario:hover {
+        border-color: #ffa726;
+        box-shadow: 0 0 10px #ffa72644;
+      }
+
+      .video-container {
+        background-color: #1e1e1e;
+        border: 1px solid #333;
+        padding: 20px;
+        margin-top: 20px;
+        text-align: center;
+        border-radius: 10px;
+        box-shadow: 0 0 10px #0008;
+      }
+
+      .video-container h2 {
+        color: #ffa726;
+        margin-bottom: 10px;
+      }
+
+      .video-container iframe {
+        width: 100%;
+        max-width: 600px;
+        height: 340px;
+        border-radius: 10px;
+        border: none;
+      }
+
+      footer {
+        background-color: #1c1c1c;
+        text-align: center;
+        padding: 15px;
+        color: #aaa;
+        border-top: 2px solid #ffa726;
+        font-size: 0.9em;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          flex-direction: column;
+        }
+
+        aside {
+          position: static;
+          width: 100%;
+        }
+
+        .cenario {
+          flex: 1 1 100%;
+        }
+
+        .video-container iframe {
+          max-width: 100%;
+          height: 220px;
+        }
+      }
+
+      input[type="radio"] {
+        display: none;
+      }
+
+
+      .imagem-cenario img {
+        display: none;
+        width: 100%;
+        border-radius: 10px;
+        margin-top: 10px;
+      }
+
+      #c1:checked ~ .botoes-cenarios ~ .imagem-cenario #img1,
+      #c2:checked ~ .botoes-cenarios ~ .imagem-cenario #img2,
+      #c3:checked ~ .botoes-cenarios ~ .imagem-cenario #img3 {
+        display: block;
+      }
+
+      .botoes-cenarios {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .botoes-cenarios label {
+        cursor: pointer;
+        background-color: #222;
+        color: #ffa726;
+        padding: 10px;
+        border-radius: 8px;
+        transition: background 0.2s;
+      }
+
+      .botoes-cenarios label:hover {
+        background-color: #ffa726;
+        color: black;
+      }
+      
+      .video-container video {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #0008;
+}
+     
+    </style>
+  </head>
+
+  <body>
+    <nav>
+      <ul>
+        <li><a href="#Biome Hell">Início</a></li>
+        <li><a href="#Sobre">Sobre</a></li>
+         <li><a href="#Estilo">Estilo</a></li>
+        <li><a href="#Fases">Sprites</a></li>
+        <li><a href="#Trilha Sonora">Trilha Sonora</a></li>
+        <li><a href="#Vídeo">Vídeo</a></li>
+
+        <li><a href="#"></a></li>
+      </ul>
+    </nav>
+
+    <header>
+      <h1 id="Biome Hell">Biome Hell</h1>
+      <p></p>
+
+    </header>
+
+    <div class="container">
+      <main>
+        <h2 id="Sobre">Sobre o Jogo</h2>
+
+        <p>
+          Biome Hell é um jogo no estilo bullet hell, que possui três fases ambientadas em um bioma, a primeira é ambientada em uma floresta, a segunda em uma floresta nevada e a terceira em um vulcão. Cada fase possui um inimigo próprio, a primeira sendo serpentes, a segunda ursos e a terceira humanos.
+        </p>
+        
+        <h2 id="Estilo">Estilo Bullet Hell</h2>
+        
+    <p>
+    
+            Um jogo bullet hell é um tipo de shooter em que o jogador enfrenta inimigos numerosos e variados, que atacam de formas diferentes e muitas vezes aparecem em grandes grupos. Cada inimigo pode ter padrões próprios de movimento, ataques especiais e pontos fracos específicos, exigindo que o jogador observe e priorize alvos estrategicamente para sobreviver.
+ 
+         <p>
+            O jogador precisa aprender os padrões de ataque dos inimigos e decidir rapidamente quais inimigos eliminar primeiro, equilibrando ataque e defesa para não ser cercado.
+
+         </p>
+         
+         <p>
+           Além disso, muitos bullet hells recompensam a precisão e a estratégia: destruir inimigos de forma eficiente aumenta a pontuação e pode liberar bônus, enquanto falhar em lidar com certos inimigos pode criar situações extremamente perigosas. A dificuldade desses jogos vem tanto da quantidade quanto da variedade de inimigos, cada um oferecendo um desafio único que testa reflexos e planejamento.
+        </p>
+    </p>
+
+        <h2 id="Sprites">Sprites</h2>
+        <div class="cenarios-container">
+          <input type="radio" name="cen" id="c1" checked>
+          <input type="radio" name="cen" id="c2">
+          <input type="radio" name="cen" id="c3">
+
+          <div class="botoes-cenarios">
+            <label for="c1">Boss - Urso </label>
+            <label for="c2">Inimigo 1 - Serpente </label>
+            <label for="c3">Inimigo 2 - mob2o</label>
+          </div>
+
+          <div class="imagem-cenario">
+            <img id="img1" src="Bb.jpg" alt="Urso">
+            <img id="img2" src="Ss.jpg" alt="Serpente">
+            <img id="img3" src="Tt.jpg" alt="mob2">
+          </div>
+        </div>
+        
+        <h2 id="Trilha Sonora">Trilha Sonora</h2>
+
+<p>
+  Área destinada à trilha sonora do jogo. Disponibilizando todas as músicas do jogo.
+</p>
+
+<div class="trilha-container">
+  <div class="faixa">
+    <p>Música do Lobby</p>
+    <audio controls>
+      <source src="Trilha-Lobby.mp3" type="audio/mpeg">
+      Seu navegador não suporta o elemento de áudio.
+    </audio>
+  </div>
+</div>
+
+<div class="trilha-container">
+  <div class="faixa">
+    <p>1ª Fase – Floresta</p>
+    <audio controls>
+      <source src="Trilha-Floresta.mp3" type="audio/mpeg">
+      Seu navegador não suporta o elemento de áudio.
+    </audio>
+  </div>
+</div>
+
+<div class="trilha-container">
+  <div class="faixa">
+    <p>2ª Fase – Gelo</p>
+    <audio controls>
+      <source src="Trilha-Gelo.mp3" type="audio/mpeg">
+      Seu navegador não suporta o elemento de áudio.
+    </audio>
+  </div>
+</div>
+
+<div class="trilha-container">
+  <div class="faixa">
+    <p>3ª Fase – Vulcão</p>
+    <audio controls>
+      <source src="Trilha-Vulcão.mp3" type="audio/mpeg">
+      Seu navegador não suporta o elemento de áudio.
+    </audio>
+  </div>
+</div>
+
+
+
+
+        <h2>Tutorial</h2>
+        <p>Área destinada ao tutorial.</p>
+        <ol>
+  <li>Mover o personagem: Use as setas ou teclas WASD para se mover pelo cenário.</li>
+  <li>Ficar atento ao espaço: Mantenha espaço suficiente entre você e os inimigos para reagir às balas.</li>
+  <li>Priorizar sobrevivência: Concentre-se em não ser atingido antes de atacar.</li>
+  <li>Atacar quando possível: Se seu personagem atira, tente acertar os inimigos sem se colocar em perigo.</li>
+  <li>Observar padrões dos inimigos: Muitos inimigos têm movimentos repetitivos que podem ser previstos.</li>
+  <li>Manter calma: Evite movimentos bruscos sem pensar; paciência é essencial.</li>
+  <li>Aprender com erros: Cada tentativa ajuda a memorizar padrões e melhorar o desempenho.</li>
+</ol>
+
+<div class="video-container">
+  <h2 id="Vídeo">Vídeo / Gameplay</h2>
+
+  <p>
+    Área destinada ao video.
+  </p>
+
+  <video controls width="600">
+    <source src="video.mp4" type="video/mp4">
+    Seu navegador não suporta a tag de vídeo.
+  </video>
+</div>
+      </main>
+
+      <aside>
+        <ul>
+          <li><a href="#">Link do jogo </a></li>
+        </ul>
+      </aside>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 Biome hell - Todos os direitos reservados.</p>
+    </footer>
+  </body>
+</html>
